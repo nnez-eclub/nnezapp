@@ -1,0 +1,36 @@
+<?php
+define('PRI_LOGIN', 0X1);
+define('PRI_MODIFY_PASSWORD', 0x2);
+define('PRI_CREATE_USER', 0x4);
+define('PRI_DELETE_USER', 0x8);
+define('PRI_ACCESS_USERS_INFO', 0x10);
+define('PRI_ACCESS_PROJECTS', 0x20);
+define('PRI_ACCESS_COURSES', 0x40);
+define('PRI_ACCESS_TEXTS', 0x80);
+define('PRI_ANNOUNCEMENT', 0x100);
+define('PRI_BOARD', 0x200);
+define('PRI_TEXT', 0x400);
+define('PRI_DELETE_OTHERS_BOARD', 0x800);
+define('PRI_REGISTER_COURSE', 0x1000);
+define('PRI_REGISTER_PROJECT', 0x2000);
+define('PRI_CONTROL_COURSE', 0x4000);
+define('PRI_CONTROL_PROJECT', 0x8000);
+define('PRI_ACCESS_OTHERS_TEXT', 0x10000);
+define('PRI_ENROLL_COURSE', 0x20000);
+//define('PRI_EXIT_COURSE', 0x40000);
+define('PRI_ENROLL_PROJECT', 0x80000);
+//define('PRI_EXIT_PROJECT', 0x10000);
+define('PRI_MODIFY_USERS_INFO', 0x200000);
+define('PRI_MODIFY_USERS_PASSWORD', 0x400000);
+define('PRI_GRANT_PRIVILEGE', 0x800000);
+define('PRI_DEPRIVE_PRIVILEGE', 0x100000);
+define('PRI_UNVEIL_ANNONYMOUS', 0x2000000);
+define('PRI_ANNONYMOUS_TEXT', 0x4000000);
+define('PRI_ANNONYMOUS_BOARD', 0x8000000);
+define('PRI_HTML_CODE', 0x10000000);
+//define('PRI_', 0x20000000);
+//define('PRI_', 0X40000000);
+function check_privilege($mask){
+    return $_SESSION['privilege']&$mask;
+}
+?>
