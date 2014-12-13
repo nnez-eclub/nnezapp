@@ -15,6 +15,8 @@ if(isset($_SESSION['username']))
 	<link href="http://libs.baidu.com/bootstrap/3.0.3/css/bootstrap.css" rel="stylesheet">
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+    <meta name="renderer" content="webkit" />
+    <meta http-equiv="X-UA-Compatible" content="chrome=1,IE=edge">
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <title>南二 OA</title>
     <script type="text/javascript">

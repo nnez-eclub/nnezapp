@@ -18,6 +18,8 @@ if(!isset($_SESSION['username']))
 	<script src="http://apps.bdimg.com/libs/bootstrap/3.0.3/js/bootstrap.min.js"></script>
 
 	<meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0,user-scalable=yes">
+	<meta name="renderer" content="webkit" />
+    <meta http-equiv="X-UA-Compatible" content="chrome=1,IE=edge">
 	<title>Hulluo!</title>
 </head>
 <body onload="tag_switch('board');<?php if(check_privilege(PRI_ACCESS_TEXTS))echo 'get_ntexts();setInterval(get_ntexts,120000);';?>">
@@ -50,7 +52,7 @@ if(!isset($_SESSION['username']))
 								</a>
 								<ul class="dropdown-menu">
 									<?php if(check_privilege(PRI_TEXT))echo '<li><a data-toggle="modal" data-target="#message_dialoge"><span class="glyphicon glyphicon-pencil"></span>写消息</a></li>';?>
-									<li><a><span class="glyphicon glyphicon-wrench"></span>反映问题</a></li>
+									<li><a data-toggle="modal" data-target="#dlg_contact_me"><span class="glyphicon glyphicon-wrench"></span>反映问题</a></li>
 									<li class="divider"></li>
 									<li><a><span class="glyphicon glyphicon-tower"></span>权限:<?php echo $_SESSION['privilege'];?></a></li>
 									<li><a href="javascript:logout()"><span class="glyphicon glyphicon-remove"></span>注销</a></li>
@@ -138,3 +140,29 @@ if(!isset($_SESSION['username']))
 		    </div><!-- /.modal -->
 		</div>
 </html>
+
+<div class="modal fade" id="dlg_contact_me" tabindex="-1" role="dialog" aria-hidden="true">
+	<div class="modal-dialog">
+		<div class="modal-content">
+			<div class="modal-header">
+				<button type="button" class="close" 
+				   data-dismiss="modal" aria-hidden="true">&times;
+				</button>
+			</div>
+			<div class="modal-body">
+				<address>
+					<p>Email:<a href="mailto:dragonazd@gmail.com">dragonazd@gmail.com</a></p>
+					<p>QQ:757887477</p>
+					<p><a target="_blank" href="http://weibo.com/youybsy">Weibo</a></p>
+					<p>github:<a target="_blank" href="http://github.com/sqd">sqd</a></p>
+					<p>------Grade 2013,yh</p>
+				</address>
+			</div>
+			<div class="modal-footer">
+				<button type="button" class="btn btn-default"
+				   data-dismiss="modal">Close
+				</button>
+			</div>
+		</div><!-- /.modal-content -->
+	</div><!-- /.modal -->
+</div>
