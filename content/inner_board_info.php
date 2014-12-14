@@ -1,6 +1,7 @@
 <?php
 session_start();
 include '../logic/functions.php';
+include '../logic/privileges.php';
 if(!isset($_SESSION['username'])){
     session_destroy();
     exit();

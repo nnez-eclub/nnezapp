@@ -20,6 +20,9 @@ if(!isset($_SESSION['username']))
 	<meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0,user-scalable=yes">
 	<meta name="renderer" content="webkit" />
     <meta http-equiv="X-UA-Compatible" content="chrome=1,IE=edge">
+    <style type="text/css">
+        body,button, input, select, textarea,h1 ,h2, h3, h4, h5, h6 { font-family: "Helvetica Neue", Helvetica,Microsoft YaHei,'宋体' , Tahoma, Arial, "\5b8b\4f53", sans-serif;}
+    </style>
 	<title>Hulluo!</title>
 </head>
 <body onload="tag_switch('board');<?php if(check_privilege(PRI_ACCESS_TEXTS))echo 'get_ntexts();setInterval(get_ntexts,120000);';?>">

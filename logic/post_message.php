@@ -16,8 +16,8 @@ if(post_para('title')=='' && post_para('content')==''){
 }
 $mysqli=getDB();
 $stmt=$mysqli->prepare('INSERT INTO board (title,content,time,user,name) VALUES (?,?,NOW(),?,?)');
-$content=post_para('content')==''?'null':(check_privilege(PRI_HTML_CODE)?post_para('content'):htmlspecialchars_decode(post_para('content')));
-$title=post_para('title')==''?'null':(check_privilege(PRI_HTML_CODE)?post_para('title'):htmlspecialchars_decode(post_para('title')));
+$content=post_para('content')==''?'null':check_privilege(PRI_HTML_CODE)?post_para('content'):htmlspecialchars(post_para('content'),ENT_QUOTES);
+$title=post_para('title')==''?'null':check_privilege(PRI_HTML_CODE)?post_para('title'):htmlspecialchars(post_para('title'),ENT_QUOTES);
 $stmt->bind_param('ssss',$title,$content,$_SESSION['username'],$_SESSION['name']);
 if(!$stmt->execute()){
     echo 'error';

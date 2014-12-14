@@ -7,6 +7,7 @@
 	<h3>Development logs</h3>
 	<ul class="list-group">
         <li class="list-group-item"><label class="text-success">Now:Still in development routine!</label></li>
+        <li class="list-group-item">Nov-12-2014:Repair a severe XSS loophole (thanks IPID)</li>
         <li class="list-group-item">Nov-12-2014:Privilege system partly implemented</li>
         <li class="list-group-item">Nov-12-2014:More friendly to mobile users</li>
         <li class="list-group-item">Nov-9-2014:Privilege system was designed, waiting for further implementation</li>
