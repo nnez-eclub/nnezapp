@@ -10,7 +10,7 @@ if(!isset($_SESSION['username'])){
     <div class="row">
         <?php if(check_privilege(PRI_BOARD))echo '<div class="col-lg-2 col-md-2 col-sm-3 col-xs-6"><button class="btn btn-primary btn-lg" data-toggle="modal" data-target="#post_message"><span class="glyphicon glyphicon-pencil"></span>写公告</button></div>';?>
         <div class="col-lg-2 col-md-2 col-sm-3 col-xs-6">
-             <button class="btn btn-primary btn-lg" onclick="load_board()"><span class="glyphicon glyphicon-refresh"></span>刷新</button>
+             <button class="btn btn-primary btn-lg" onclick="load_board()"><i id="reload_btn" class="icon-refresh"></i>刷新</button>
         </div>
     </div>
     <div class="row">
@@ -25,8 +25,10 @@ if(!isset($_SESSION['username'])){
     </div>
     <script type="text/javascript">
         function load_board(){
+            document.getElementById("reload_btn").classList.add("icon-spin");
             $.get("content/inner_board_info.php?page="+current_page
                 ,function(data){
+                document.getElementById("reload_btn").classList.remove("icon-spin");
                 document.getElementById("board_info").innerHTML=data;
             });
         }
@@ -55,12 +57,13 @@ if(!isset($_SESSION['username'])){
             }
         }
         function post_message(){
-
             $.post("logic/post_message.php",
                 {title:document.getElementById("c_title").value,content:document.getElementById("c_content").value},
                 function(result){
                     if(result=="success"){
                         $("#post_message").modal("hide");
+                        document.getElementById("c_title").value='';
+                        document.getElementById("c_content").value='';
                         load_board();
                     }else{
                         document.getElementById("post_button").classList.add("btn-danger");

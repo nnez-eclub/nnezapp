@@ -27,7 +27,7 @@ if(!check_privilege(PRI_ACCESS_PROJECTS)){
             </form>
         </div>
         <div class="col-lg-2">
-            <button onclick="load_courses()" class="btn btn-default"><span class="glyphicon glyphicon-refresh"></span>刷新</button>
+            <button onclick="load_courses()" class="btn btn-default"><i id="reload_btn" class="icon-refresh"></i>刷新</button>
         </div>
     </div>
     <div class="row">
@@ -53,8 +53,10 @@ if(!check_privilege(PRI_ACCESS_PROJECTS)){
     </div>
     <script type="text/javascript">
         function load_courses(){
+            document.getElementById("reload_btn").classList.add("icon-spin");
             $.get("content/inner_projects_info.php?page="+current_page+"&av="+document.getElementById("av").checked+"&kw="+document.getElementById("keyword").value+"&sp="+document.getElementById("sponsor").value
                 ,function(data){
+                document.getElementById("reload_btn").classList.remove("icon-spin");
                 document.getElementById("courses_info").innerHTML=data;
             });
         }

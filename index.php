@@ -14,6 +14,12 @@ if(isset($_SESSION['username']))
     <script src="http://libs.baidu.com/bootstrap/3.0.3/js/bootstrap.js"></script>
 	<link href="http://libs.baidu.com/bootstrap/3.0.3/css/bootstrap.css" rel="stylesheet">
 
+    <!-- awesome font -->
+    <link rel="stylesheet" href="../css/font-awesome.min.css">
+    <!--[if IE 7]>
+    <link rel="stylesheet" href="assets/css/font-awesome-ie7.min.css">
+    <![endif]-->
+
     <meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
     <meta name="renderer" content="webkit" />
     <meta http-equiv="X-UA-Compatible" content="chrome=1,IE=edge">
@@ -43,6 +49,7 @@ if(isset($_SESSION['username']))
             }
     }
     function login(){
+        document.getElementById("login_btn").innerHTML="<i class=\"icon-spinner icon-spin\"></i>";
         document.getElementById("u_p").classList.remove("has-error");
         $.post("logic/login.php",{username:document.getElementById("username").value,passwd:document.getElementById("passwd").value},on_responsed,"text");
     }
@@ -54,7 +61,7 @@ if(isset($_SESSION['username']))
     */
     </script>
 </head>
-<body>
+<body onload="document.getElementById('label_js_warning').innerText=''">
     <div class="container">
         <div class="row">
             <div class="col-lg-3 col-lg-offset-4 col-md-4 col-md-offset-4 col-sm-6 col-xs-8">
@@ -69,6 +76,7 @@ if(isset($_SESSION['username']))
                     <h3>建议使用Chrome。支持浏览器:Chrome,Firefox,Safari,Opera,IE 8+</h3>
                     <h3>如果浏览器支持，可以尝试开启"极速模式"。</h3>
                 </div>
+                <label id="label_js_warning">你没有开启JavaScript，页面将无法正常使用。请在浏览器设置中开启JavaScript。</label>
                 <div class="row">
                     <div class="center-block">
                         <form role="form" actoin="javascript:void(0);">
