@@ -88,6 +88,7 @@ if(!isset($_SESSION['username']))
 							});
 				}
 				function tag_switch(tagname){
+						document.getElementById("content").innerHTML="<div class=\"col-lg-12\"><p class=\"text-center\"><i class=\"icon-spinner icon-spin icon-4x\"></i></p></div>";
 						for(var i=0;i<tag_list.length;i++)
 							if(document.getElementById("tag_"+tag_list[i])!=null)
 								document.getElementById("tag_"+tag_list[i]).classList.remove("active");
@@ -96,6 +97,7 @@ if(!isset($_SESSION['username']))
 				}
 				function post_text(){
 					document.getElementById("sending_indicator").style.display="inline";
+                    document.getElementById("sending_indicator").classList.add("disabled");
 					$.post("logic/post_text.php",
 		                {text_receiver:document.getElementById("text_receiver").value,text_content:document.getElementById("text_content").value},
 		                function(result){
@@ -104,6 +106,7 @@ if(!isset($_SESSION['username']))
                                 document.getElementById("text_receiver").value='';
                                 document.getElementById("text_content").value='';
 		                    }else{
+                                document.getElementById("sending_indicator").classList.remove("disabled");
 		                        document.getElementById("post_button").classList.add("btn-danger");
 		                        document.getElementById("post_button").innerHTML="Error. Retry?";
 		                    }

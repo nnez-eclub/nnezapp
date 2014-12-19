@@ -12,7 +12,7 @@ if(!check_privilege(PRI_BOARD)){
 }
 $mysqli=getDB();
 $stmt=$mysqli->prepare('SELECT user FROM board WHERE no=?');
-$stmt->bind_param('i',post_param('no'));
+$stmt->bind_param('i',get_para('no'));
 $author=null;$stmt->bind_result($author);
 if(!$stmt->execute()){
     $stmt->close();
@@ -28,7 +28,7 @@ if($author!=$_SESSION['username'] && !check_privilege(PRI_DELETE_OTHERS_BOARD)){
 }
 $stmt->close();
 $stmt=$mysqli->prepare('DELETE FROM board WHERE no=?');
-$stmt->bind_param('i',post_param('no'));
+$stmt->bind_param('i',get_para('no'));
 if(!$stmt->execute()){
     $stmt->close();
     $mysqli->close();

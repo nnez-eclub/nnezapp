@@ -21,10 +21,12 @@ if(!isset($_SESSION['username'])){
     </div>
     <div class="row">
         <div class="col-lg-10" id="board_info">
+        <p class="text-center"><i class="icon-spinner icon-spin icon-4x"></i></p>
         </div>
     </div>
     <script type="text/javascript">
         function load_board(){
+            document.getElementById("board_info").innerHTML="<div class=\"col-lg-12\"><p class=\"text-center\"><i class=\"icon-spinner icon-spin icon-4x\"></i></p></div>";
             document.getElementById("reload_btn").classList.add("icon-spin");
             $.get("content/inner_board_info.php?page="+current_page
                 ,function(data){
@@ -32,6 +34,18 @@ if(!isset($_SESSION['username'])){
                 document.getElementById("board_info").innerHTML=data;
             });
         }
+        function delete_board_message(id){
+        if(confirm("确定要删除编号为 "+id+" 的消息吗?")){
+            $.get("logic/delete_board.php?no="+id
+                ,function(data){
+                    if(data=="success"){
+                        alert("删除成功");
+                        load_board();
+                    }else
+                        alert("删除失败");
+            });
+        }
+    }
         function jump_page(p){
             if(p>0){
                 document.getElementById("pager"+current_page).classList.remove("active");
@@ -57,6 +71,7 @@ if(!isset($_SESSION['username'])){
             }
         }
         function post_message(){
+            document.getElementById("post_button").classList.add("disabled");
             $.post("logic/post_message.php",
                 {title:document.getElementById("c_title").value,content:document.getElementById("c_content").value},
                 function(result){
@@ -66,6 +81,7 @@ if(!isset($_SESSION['username'])){
                         document.getElementById("c_content").value='';
                         load_board();
                     }else{
+                        document.getElementById("post_button").classList.remove("disabled");
                         document.getElementById("post_button").classList.add("btn-danger");
                         document.getElementById("post_button").innerHTML="Error. Retry?";
                     }

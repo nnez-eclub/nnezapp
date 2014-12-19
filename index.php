@@ -1,4 +1,20 @@
 <?php
+if(isset($_GET['tourist'])){
+	echo
+	'<html>
+	<header>
+	<script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
+	
+	</header>
+	<body>
+		<script>
+		    $.post("logic/login.php",{username:"tourist",passwd:""},
+		    	function(data){window.location.href="main.php";},"text");
+	</script>
+	</body>
+	</html>';
+	exit();
+}
 include 'logic/functions.php';
 session_start();
 if(isset($_SESSION['username']))
@@ -7,12 +23,14 @@ if(isset($_SESSION['username']))
 <!DOCTYPE html>
 <html>
 <head>
+    
      <!-- jQuery -->
-    <script src="http://libs.baidu.com/jquery/2.0.0/jquery.js"></script>
+    <script src="http://libs.baidu.com/jquery/2.0.0/jquery.min.js"></script>
     
     <!-- bootstrap -->
-    <script src="http://libs.baidu.com/bootstrap/3.0.3/js/bootstrap.js"></script>
-	<link href="http://libs.baidu.com/bootstrap/3.0.3/css/bootstrap.css" rel="stylesheet">
+    <script src="http://libs.baidu.com/bootstrap/3.0.3/js/bootstrap.min.js"></script>
+	<link href="http://libs.baidu.com/bootstrap/3.0.3/css/bootstrap.min.css" rel="stylesheet">
+    
 
     <!-- awesome font -->
     <link rel="stylesheet" href="../css/font-awesome.min.css">
@@ -53,15 +71,14 @@ if(isset($_SESSION['username']))
         document.getElementById("u_p").classList.remove("has-error");
         $.post("logic/login.php",{username:document.getElementById("username").value,passwd:document.getElementById("passwd").value},on_responsed,"text");
     }
-        /*
+
     document.onkeypress=function(){
         if(event.keyCode==13)
             login();
     }
-    */
     </script>
 </head>
-<body onload="document.getElementById('label_js_warning').innerText=''">
+<body>
     <div class="container">
         <div class="row">
             <div class="col-lg-3 col-lg-offset-4 col-md-4 col-md-offset-4 col-sm-6 col-xs-8">
@@ -76,7 +93,7 @@ if(isset($_SESSION['username']))
                     <h3>建议使用Chrome。支持浏览器:Chrome,Firefox,Safari,Opera,IE 8+</h3>
                     <h3>如果浏览器支持，可以尝试开启"极速模式"。</h3>
                 </div>
-                <label id="label_js_warning">你没有开启JavaScript，页面将无法正常使用。请在浏览器设置中开启JavaScript。</label>
+                <noscript>你没有开启JavaScript，页面将无法正常使用。请在浏览器设置中开启JavaScript。</noscript>
                 <div class="row">
                     <div class="center-block">
                         <form role="form" actoin="javascript:void(0);">
@@ -84,7 +101,7 @@ if(isset($_SESSION['username']))
                                 <label>用户名</label><input type="text" id="username" value="tourist" class="form-control" placeholder="账户">
                                 <label>密码</label><input type="password" id="passwd" class="form-control" placeholder="密码">
                             </div>
-                            <a class="btn btn-default" onclick="login()" id="login_btn">登录</a><a class="btn btn-link">需要帮助?</a>
+                            <a class="btn btn-default" onclick="login()" id="login_btn">登录</a><button type="button" class="btn btn-link" title="能为你做些什么?"  data-container="body" data-toggle="popover" data-placement="right" data-content="游客帐号:tourist 密码为空">需要帮助?</button>
                         </form>
                     </div>
                 </div>
@@ -93,4 +110,12 @@ if(isset($_SESSION['username']))
         </div>
     </div>
 </body>
+<script type="text/javascript">
+    $(function () 
+      { $("[data-toggle='popover']").popover();
+      });
+    if('v'=='\v'){
+        document.getElementById("label_js_warning").innerText+="还在使用IE?请使用更现代的浏览器以获得更好的浏览体验(例如Chrome)。";
+    }
+</script>
 </html>

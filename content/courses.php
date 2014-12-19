@@ -44,6 +44,7 @@ if(!check_privilege(PRI_ACCESS_COURSES)){
             <tbody id="courses_info">
             </tbody>
         </table>
+        <p class="text-center" id="loading_indicator"><i class="icon-spinner icon-spin icon-4x"></i></p>
     </div>
     <div class="row">
         <div class="col-lg-12">
@@ -60,6 +61,7 @@ if(!check_privilege(PRI_ACCESS_COURSES)){
             document.getElementById("reload_btn").classList.add("icon-spin");
             $.get("content/inner_courses_info.php?page="+current_page+"&av="+av+"&kw="+kw+"&sp="+sp
                 ,function(data){
+                    document.getElementById("loading_indicator").style.display="none";
                     document.getElementById("reload_btn").classList.remove("icon-spin");
                 document.getElementById("courses_info").innerHTML=data;
             });
@@ -106,7 +108,7 @@ if(!check_privilege(PRI_ACCESS_COURSES)){
             }
         }
         function enroll(no,obj){
-            obj.innerHTML="请求中..";
+            obj.innerHTML="<label>请求中..</label><i class=\"icon-spinner icon-spin\"></i>";
             $.get("../logic/enroll.php?no="+no,function(data){
                 obj.className="btn";
                 if(data=="success"){
@@ -125,7 +127,7 @@ if(!check_privilege(PRI_ACCESS_COURSES)){
             });
         }
         function unenroll(obj){
-            obj.innerHTML="请求中..";
+            obj.innerHTML="<label>请求中..</label><i class=\"icon-spinner icon-spin\"></i>";
             $.get("../logic/unenroll.php",function(data){
                 obj.className="btn";
                 if(data=="success"){
